@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/exemplar-codes/redux-demo-codevolution/issues"
   },
-  "homepage": "https://github.com/exemplar-codes/redux-demo-codevolution#readme"
+  "homepage": "https://github.com/exemplar-codes/redux-demo-codevolution#readme",
+  "dependencies": {
+    "redux": "^4.2.0"
+  }
 }
