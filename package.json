@@ -1,0 +1,20 @@
+{
+  "name": "redux-demo-codevolution",
+  "version": "1.0.0",
+  "description": "Learning project for core Redux section of Codevolution's Redux course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exemplar-codes/redux-demo-codevolution.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/exemplar-codes/redux-demo-codevolution/issues"
+  },
+  "homepage": "https://github.com/exemplar-codes/redux-demo-codevolution#readme"
+}
