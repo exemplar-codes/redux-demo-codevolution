@@ -1,5 +1,6 @@
-const { createStore } = require("redux");
+const { createStore, applyMiddleware } = require("redux");
 const axios = require("axios").default;
+const thunkMiddleware = require("redux-thunk").default;
 
 const FETCH_USERS_REQUESTED = "FETCH_USERS_REQUESTED";
 const FETCH_USERS_SUCCEEDED = "FETCH_USERS_SUCCEEDED";
@@ -39,23 +40,25 @@ function fetchUsersFailure(error) {
   return { type: FETCH_USERS_FAILED, payload: error };
 }
 
-async function fetchUsers(username) {
-  try {
-    store.dispatch(fetchUsersRequest());
+function fetchUsersThunk() {
+  return async function (dispatch, getState) {
+    try {
+      dispatch(fetchUsersRequest());
 
-    const response = await axios.get(
-      `https://api.github.com/users/${username}`
-    );
+      const response = await axios.get(
+        `https://jsonplaceholder.typicode.com/users`
+      );
+      const users = response.data;
 
-    const data = await response.json();
-
-    store.dispatch(fetchUsersSuccess(data));
-  } catch (error) {
-    store.dispatch(fetchUsersFailure(error.message));
-  }
+      dispatch(fetchUsersSuccess({ bingo:getState() }));
+    } catch (error) {
+      dispatch(fetchUsersFailure(error.message));
+    }
+  };
 }
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(thunkMiddleware));
 
 store.subscribe(() => console.log(store.getState()));
-fetchUsers("sanjarcode");
+// fetchUsers("sanjarcode");
+store.dispatch(fetchUsersThunk());
