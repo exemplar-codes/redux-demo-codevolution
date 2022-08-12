@@ -50,7 +50,7 @@ function fetchUsersThunk() {
       );
       const users = response.data;
 
-      dispatch(fetchUsersSuccess({ bingo:getState() }));
+      dispatch(fetchUsersSuccess(users.map((user) => user.id)));
     } catch (error) {
       dispatch(fetchUsersFailure(error.message));
     }
